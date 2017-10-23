@@ -157,6 +157,14 @@ background: url('imagenes/portada.jpg') no-repeat center center fixed;
   -o-background-size: cover;
   background-size: cover;
 }
+.fondoImagen2{
+background-image: url('');
+background: url('imagenes/restaurant_2.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .fondoPizza{
 background: url('imagenes/restaurant_0.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -164,6 +172,11 @@ background: url('imagenes/restaurant_0.jpg') no-repeat center center fixed;
   -o-background-size: cover;
   background-size: cover;
 }
+
+.fondowallpaper{
+background: url('imagenes/restaurant_wallpapers.jpg'); 
+}
+
 .navbar-container{
   background-color: #bfbfbf;
   padding: 5px;
@@ -203,6 +216,7 @@ background: url('imagenes/restaurant_0.jpg') no-repeat center center fixed;
 ************************************************/
 
 .inputLogin {
+    background-color:#FFF5E9;
     text-align: center;
     width: 50%;
     padding: 12px 20px;
@@ -226,7 +240,9 @@ background: url('imagenes/restaurant_0.jpg') no-repeat center center fixed;
 .botonCancelar {
     width: auto;
     padding: 10px 18px;
-    background-color: #f44336;
+    background-color: #FDC287;
+    border-style: double;
+    border-color: #D27B0F ;
 }
 .imgcontainer {
     text-align: center;
@@ -237,6 +253,12 @@ background: url('imagenes/restaurant_0.jpg') no-repeat center center fixed;
     border-radius: 20%;
 }
 .container {
+    width: 25%;
+    padding: 12px;
+    text-align:center;
+    padding-top: 16px;
+}
+.container2 {
     padding: 16px;
     text-align:center;
     padding-top: 16px;
