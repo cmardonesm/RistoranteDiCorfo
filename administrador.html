@@ -6,6 +6,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  function ingresarExistencia(){
+    alert("Existencia exitosamente agregada");
+    return false;
+  }
+</script>
 </head>
 <body>
 
@@ -18,19 +24,70 @@
 </nav>
 
 <div class="container">
-  <ul class="nav nav-tabs ">
-    <li class="botonesSecundarios"><a name="stock">Stock</a></li> 
-    <li class="botonesSecundarios"><a name="Caja">Caja</a></li>
-    <li class="botonesSecundarios"><a href="#Caja">Ventas Diarias 2</a></li>
-    <li class="botonesSecundarios"><a name="#">Cocina 3</a></li>
+  <h2>Control de Stock</h2>
+  <p>En esta sección podrá controlar en linea lo niveles de estock disponibles, podrá ingresar existencias y rebajarlas</p><br>
+  <ul class="nav nav-tabs">
+    <li class="active "><a data-toggle="tab" href="#home">Sotck disponible</a></li>
+    <li class=""><a data-toggle="tab" href="#menu1">Ingresar existencias</a></li>
+    <li class=""><a data-toggle="tab" href="#menu2">Rebajar stock</a></li>
+    <li class=""><a data-toggle="tab" href="#menu3">Alertas Stock Critico</a></li>
   </ul>
-  <br>
 
-  
-  <p name="stock"><strong>Note:</strong> This example shows how to create a basic navigation tab. It is not toggleable/dynamic yet (you can't click on the links to display different content)- see the last example in the Bootstrap Tabs and Pills Tutorial to find out how this can be done.</p>
+  <div class="tab-content ">
+    <div id="home" class="tab-pane fade in active ">
+      <h3 class="">HOME</h3>
 
-  <p name="Caja"><strong>Note:</strong> This example shows how to create a basic navigation tab. It is not toggleable/dynamic yet (you can't click on the links to display different content)- see the last example in the Bootstrap Tabs and Pills Tutorial to find out how this can be done.</p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Ingrese detalle del producto</h3>
+      <form class="fomularioIngresoInsumo" action="#menu1" method="post" onsubmit="return ingresarExistencia();">
+          <div>
+            <label for="primerValor">Tipo insumo:</label>
+            <input type="text" id="valor1" name="primerValor" />
+          </div>
 
+          <div class="form-group">
+                <label for="tipoInsumo">Tipo insumo:</label>
+                <select class="form-control" id="tipoInsumo">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select> 
+          </div>
+
+          <div>
+            <label for="segundoValor">Nombre:</label>
+            <input type="text" id="valor2" name="segundoValor" />
+          </div>
+          <div>
+            <label for="segundoValor">Unidad de medida:</label>
+            <input type="text" id="valor2" name="segundoValor" />
+          </div>
+          <div>
+            <label for="segundoValor">Cantidad:</label>
+            <input type="text" id="valor2" name="segundoValor" />
+          </div>
+          <div>
+            <label for="segundoValor">tipo insumo:</label>
+            <input type="text" id="valor2" name="segundoValor" />
+          </div>
+          <div>
+            <input class="btn btn-primary" type="submit" value="Ingresar existencia" />
+          </div>
+
+    </form>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+  </div>
+</div>
 
 </div>
 	
