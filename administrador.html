@@ -11,6 +11,135 @@
     alert("Existencia exitosamente agregada");
     return false;
   }
+  $(document).ready(function() { });
+
+var opc,mainCont,quitarCont,cantQuitar,modCant,elim,i,j;
+  var insumos = new Array(100);
+  var cantidad = new Array(100);
+  
+  for(i = 0; i < 100; i++){
+      insumos[i] = new Array(3);
+      }
+
+  insumos[0][0] = 'Harina';
+  cantidad[0] = 10;
+  insumos[0][1] = 'kg';
+  insumos[0][2] = 'Abarrote';
+  
+  insumos[1][0] = 'Lomo Vetado';
+  cantidad[1] = 20;
+  insumos[1][1] = 'kg';
+  insumos[1][2] = 'Carnes y Embutidos';
+  
+  insumos[2][0] = 'RedBull';
+  cantidad[2] = 8;
+  insumos[2][1] = 'paks';
+  insumos[2][2] = 'Bedidas';
+  
+  insumos[3][0] = 'Lechuga';
+  cantidad[3] = 40;
+  insumos[3][1] = 'uds';
+  insumos[3][2] = 'Frutas y Verdaduras';
+  
+  mainCont = 4;
+  
+  function Consultar(){
+    var html = "<table border='1|1'><tr><td>ID</td><td>Nombre</td><td>Cantidad</td><td>Unidad</td><td>Tipo</td></tr>";
+      for (var i = 0; i < mainCont; i++) {
+          html+="<tr>";
+          html+="<td>"+(i+1)+"</td>";
+          html+="<td>"+insumos[i][0]+"</td>";
+          html+="<td>"+cantidad[i]+"</td>";
+          html+="<td>"+insumos[i][1]+"</td>";
+          html+="<td>"+insumos[i][2]+"</td>";
+
+          html+="</tr>";
+      }
+      html+="</table>";   
+      document.getElementById("box").innerHTML = html;
+  }
+  
+  function Agregar(){
+    alert("entramos en la funci´pn" );
+    insumos[mainCont][0] = [document.form.nombre.value];
+      alert("vaslor nomre "+insumos[mainCont][0] );
+    cantidad[mainCont] = [parseInt(document.getElementById("cantidad").value)];
+      alert("vaslor cantidad "+insumos[mainCont][0] );
+    insumos[mainCont][1] = [document.form.unidad.value];
+      alert("vaslor unidad "+insumos[mainCont][0] );
+    insumos[mainCont][2] = [document.form.tipo.value];
+      alert("vaslor tipo "+insumos[mainCont][0] );
+    mainCont++;
+    alert("valor indice arreglo"+ mainCont );
+    Consultar();
+  } 
+
+  function Agregar2(){
+    insumos[mainCont][0] = document.getElementById("nombre").value;
+    cantidad[mainCont] = parseInt(document.getElementById("cantidad").value);
+    insumos[mainCont][1] = document.getElementById("unidad").value; 
+    insumos[mainCont][2] = document.getElementById("tipo").value;
+    mainCont++;
+    return false;
+  } 
+  
+  function Rebajar(){
+    
+    var desc = parseInt(document.getElementById("desc").value);
+    
+    if(isNaN(document.getElementById("desc").value)){
+      alert("Valor debe ser un numero");
+      return false;
+      }
+    
+    if(desc > mainCont){
+      alert("Valor Incorrecto");
+      return false;
+      }
+    else{
+      desc=desc-1;
+      var quitar = prompt("Ingrese Cantida a rebajar");
+      cantidad[desc] = cantidad[desc]-quitar;
+      Consultar();
+    }   
+  } 
+  
+  function Modificar(){
+  
+  }
+
+  function Eliminar(){
+    
+    var del = parseInt(document.getElementById("del").value);
+    
+    if(isNaN(document.getElementById("del").value)){
+      alert("Valor debe ser un numero");
+      return false;
+      }
+    
+    if(del >= mainCont){
+      if(del==mainCont){
+        mainCont=mainCont-1;
+        Consultar();
+        }
+      else{
+        alert("Valor Incorrecto");
+        return false;
+        }
+    }
+    else{
+      del = (del-1);
+      for(i = del; i < (mainCont-1); i++){
+        insumos[i][0] = insumos[i+1][0];
+        insumos[i][1] = insumos[i+1][1];
+        insumos[i][2] = insumos[i+1][2];
+        cantidad[i] = cantidad[i+1];
+      }
+      mainCont=mainCont-1;
+      Consultar();
+      }
+  } 
+  
 </script>
 </head>
 <body>
@@ -33,50 +162,57 @@
     <li class=""><a data-toggle="tab" href="#menu3">Alertas Stock Critico</a></li>
   </ul>
 
-  <div class="tab-content ">
-    <div id="home" class="tab-pane fade in active ">
-      <h3 class="">HOME</h3>
-
-    </div>
+  <div id="home" class="tab-pane fade">
+       <p>CONSULTAR STOCK</p>
+        <button onclick="Consultar()">Consultar</button>
+      <p id="box"></p>
+  </div>
+  
     <div id="menu1" class="tab-pane fade">
-      <h3>Ingrese detalle del producto</h3>
-      <form class="fomularioIngresoInsumo" action="#menu1" method="post" onsubmit="return ingresarExistencia();">
+    <h3>Ingrese detalle del producto</h3>
+    <form class="fomularioIngresoInsumo" action="#menu1" method="post" onsubmit="return Agregar2();">
+        
           <div>
-            <label for="primerValor">Tipo insumo:</label>
-            <input type="text" id="valor1" name="primerValor" />
+              <label for="primerValor">Nombre:</label>
+              <input type="text" id="nombre" name="primerValor" />
+          </div>
+        
+          <div class="form-group">
+              <label for="unidad">Unidad de medida:</label>
+              <select class="form-control" id="unidad">
+                <option>kg.</option>
+                <option>lt</option>
+                <option>latas</option>
+                <option>Pack</option>
+                <option>Cajas</option>
+                <option>Cajones</option>
+                <option>Paquetes</option>
+              </select> 
+          </div>
+      
+          <div>
+              <label for="segundoValor">Cantidad:</label>
+              <input type="number" id="cantidad" name="segundoValor" />
           </div>
 
           <div class="form-group">
-                <label for="tipoInsumo">Tipo insumo:</label>
-                <select class="form-control" id="tipoInsumo">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </select> 
-          </div>
-
-          <div>
-            <label for="segundoValor">Nombre:</label>
-            <input type="text" id="valor2" name="segundoValor" />
+              <label for="unidad">Tipo:</label>
+              <select class="form-control" id="tipo">
+                <option>1. Vegetales.</option>
+                <option>2. Carnes</option>
+                <option>3. Pastas</option>
+                <option>4. Bebidas</option>
+                <option>5. Vinos</option>
+                <option>6. Cervezas</option>
+                <option>7. Enlatados</option>
+              </select> 
           </div>
           <div>
-            <label for="segundoValor">Unidad de medida:</label>
-            <input type="text" id="valor2" name="segundoValor" />
-          </div>
-          <div>
-            <label for="segundoValor">Cantidad:</label>
-            <input type="text" id="valor2" name="segundoValor" />
-          </div>
-          <div>
-            <label for="segundoValor">tipo insumo:</label>
-            <input type="text" id="valor2" name="segundoValor" />
-          </div>
-          <div>
-            <input class="btn btn-primary" type="submit" value="Ingresar existencia" />
-          </div>
+              <input class="btn btn-primary" type="submit" value="Ingresar existencia" />
+          </div>     
 
     </form>
+
     </div>
     <div id="menu2" class="tab-pane fade">
       <h3>Menu 2</h3>

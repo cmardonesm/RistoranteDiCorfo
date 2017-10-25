@@ -1,0 +1,158 @@
+<!Doctype html>
+<html>
+<script>
+	var opc,mainCont,quitarCont,cantQuitar,modCant,elim,i,j;
+	var insumos = new Array(100);
+	var cantidad = new Array(100);
+	
+	for(i = 0; i < 100; i++){
+			insumos[i] = new Array(3);
+			}
+
+	insumos[0][0] = 'Harina';
+	cantidad[0] = 10;
+	insumos[0][1] = 'kg';
+	insumos[0][2] = 'Abarrote';
+	
+	insumos[1][0] = 'Lomo Vetado';
+	cantidad[1] = 20;
+	insumos[1][1] = 'kg';
+	insumos[1][2] = 'Carnes y Embutidos';
+	
+	insumos[2][0] = 'RedBull';
+	cantidad[2] = 8;
+	insumos[2][1] = 'paks';
+	insumos[2][2] = 'Bedidas';
+	
+	insumos[3][0] = 'Lechuga';
+	cantidad[3] = 40;
+	insumos[3][1] = 'uds';
+	insumos[3][2] = 'Frutas y Verdaduras';
+	
+	mainCont = 4;
+	
+	function Consultar(){
+		var html = "<table border='1|1'><tr><td>ID</td><td>Nombre</td><td>Cantidad</td><td>Unidad</td><td>Tipo</td></tr>";
+	    for (var i = 0; i < mainCont; i++) {
+	        html+="<tr>";
+	        html+="<td>"+(i+1)+"</td>";
+	        html+="<td>"+insumos[i][0]+"</td>";
+	        html+="<td>"+cantidad[i]+"</td>";
+	        html+="<td>"+insumos[i][1]+"</td>";
+	        html+="<td>"+insumos[i][2]+"</td>";
+
+	        html+="</tr>";
+
+	    }
+	    html+="</table>";   
+	    document.getElementById("box").innerHTML = html;
+	
+	}
+	
+	function Agregar(){
+		insumos[mainCont][0] = [document.form.nombre.value];
+		cantidad[mainCont] = [document.form.cantidad.value];
+		insumos[mainCont][1] = [document.form.unidad.value];
+		insumos[mainCont][2] = [document.form.tipo.value];
+		mainCont++;
+		Consultar();
+	}	
+	
+	function Rebajar(){
+		
+		var desc = parseInt(document.getElementById("desc").value);
+		
+		if(isNaN(document.getElementById("desc").value)){
+			alert("Valor debe ser un numero");
+			return false;
+			}
+		
+		if(desc > mainCont){
+			alert("Valor Incorrecto");
+			return false;
+			}
+		else{
+			desc=desc-1;
+			var quitar = prompt("Ingrese Cantida a rebajar");
+			cantidad[desc] = cantidad[desc]-quitar;
+			Consultar();
+		}		
+	}	
+	
+	function Modificar(){
+	
+	}
+
+	function Eliminar(){
+		
+		var del = parseInt(document.getElementById("del").value);
+		
+		if(isNaN(document.getElementById("del").value)){
+			alert("Valor debe ser un numero");
+			return false;
+			}
+		
+		if(del >= mainCont){
+			if(del==mainCont){
+				mainCont=mainCont-1;
+				Consultar();
+				}
+			else{
+				alert("Valor Incorrecto");
+				return false;
+				}
+		}
+		else{
+			del = (del-1);
+			for(i = del; i < (mainCont-1); i++){
+				insumos[i][0] = insumos[i+1][0];
+				insumos[i][1] = insumos[i+1][1];
+				insumos[i][2] = insumos[i+1][2];
+				cantidad[i] = cantidad[i+1];
+			}
+			mainCont=mainCont-1;
+			Consultar();
+			}
+	}	
+	
+</script>
+<style>
+
+</style>
+
+<body>
+
+<h1>MENU</h1>
+<div>
+	<p>CONSULTAR STOCK</p>
+	<button onclick="Consultar()">Consultar</button>
+	<p id="box"></p>
+</div>
+
+
+<div>
+	<p>AGREGAR STOCK</p>
+	<form name="form">
+		<p>Nombre: <input type="text" id="nombre" value="Pollo" onclick = "if(this.value=='Pollo') this.value=''"/><br /></p>
+		<p>Unidad: <input type="text" id="unidad" value="Kg" onclick = "if(this.value=='Kg') this.value=''"/><br /></p>
+		<p>Cantidad: <input type="text" id="cantidad" value="20" onclick = "if(this.value=='20') this.value=''"/><br /></p>
+		<p>Tipo: <input type="text" id="tipo" value="Abarrotes" onclick = "if(this.value=='Abarrotes') this.value=''"/><br /></p>
+		<td><input type="button" onclick="Agregar();" value="guardar"></td>
+	</form>
+</div>
+<div>
+	<p>REBAJAR STOCK</p>
+	    <div>
+        <label for="desc">Indique ID que Desea Rebajar:</label><br/>
+        <input type="text" id="desc" name="desc" value="Valor ID, pe. 2" onclick = "if(this.value=='Valor ID, pe. 2') this.value=''"/>
+        <button onclick="Rebajar()">Rebajar</button>
+</div>
+<div>
+	<p>ELIMINAR STOCK</p>
+	    <div>
+        <label for="del">Indique ID que Desea Eliminar:</label><br/>
+        <input type="text" id="del" name="del" value="Valor ID, pe. 2" onclick = "if(this.value=='Valor ID, pe. 2') this.value=''"/>
+        <button onclick="Eliminar()">Eliminar</button>
+</div>
+</body>
+</html>

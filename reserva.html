@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<<head>
+	<link href="https://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet">
+	<link rel="stylesheet" href="paguinaRistoranteDiCorfo.css">
+
+	<script type="text/javascript">
+		function guardar()
+		{
+			if (document.form.nombre.value.trim()=='')
+				{
+					alert ('Debe ingresar un Nombre');
+					document.form.nombre.focus();
+					return false;
+				}
+			if (document.form.telefono.value=='')
+				{
+					alert ('Debe ingresar un número de teléfono');
+					document.form.telefono.focus();
+					return false;
+				}
+			if (document.form.email.value=='')
+				{
+					alert ('Debe ingresar un Email');
+					document.form.email.focus();
+					return false;
+				}
+		}
+		document.write(mesa+nombre+telefono+correo);
+	</script>
+</head>
+
+<body class="fondoPizza">
+	<nav align="right" >
+		<a class="botonesSecundarios" href="index.html">HOME</a>
+		<a class="botonesSecundarios" href="carta.html">CARTA</a>
+		<a class="botonesSecundarios" href="reserva.html">RESERVA</a>
+		<a class="botonesSecundarios" href="nosotros.html">NOSOTROS</a>
+		<a class="botonesSecundarios" href="login.html">LOGIN</a>
+	</nav>
+	<div class="transboxPantallaReserva">
+		&nbsp
+		<p class="subtituloPortada">Solicitud de Reserva en Ristorante di Corfo<br>
+		</p>
+		<fieldset>
+			<p class="textoNosotros">Favor seleccione el número de comensales y la fecha requerida:<br>
+			</p>
+			<center>
+				<select name="Mesa" id="mesa">
+	   				<option value="1">Mesa para 2</option> 
+	   				<option value="2">Mesa para 4</option> 
+	   				<option value="3">Mesa para 6</option>
+	   				<option value="4">Mesa para 8</option> 
+				</select>
+				<p class="textoNosotros">Para mesas de más de 8 personas,<br> favor contactar a nuestro administrador<br> al teléfono (56) 2 3456 7890.<br><br>
+		</fieldset>
+		<fieldset>
+			<p class="textoNosotros">Favor seleccione fecha:<br>
+				<input type="date" name="Reserva" step="1" min="2017-01-01" max="2018-12-31" value="<?php echo date("Y-m-d");?>
+		</fieldset>
+		<fieldset>
+			<p class="textoNosotros">Favor seleccione hora:<br>
+			<p class="textoNosotros">Almuerzo:<br>
+				<form>
+					<p class="textoNosotros">
+					<input type="radio" name="Hora" value="12:00"> 12:00<br>
+					<input type="radio" name="Hora" value="12:30"> 12:30<br>
+					<input type="radio" name="Hora" value="13:00"> 13:00<br>
+					<input type="radio" name="Hora" value="13:30"> 13:30<br>
+					<input type="radio" name="Hora" value="14:00"> 14:00<br>
+					<input type="radio" name="Hora" value="14:00"> 14:30<br><br>
+					<p class="textoNosotros">Cena:<br>
+					<p class="textoNosotros">
+					<input type="radio" name="Hora" value="12:00"> 12:00<br>
+					<input type="radio" name="Hora" value="12:30"> 12:30<br>
+					<input type="radio" name="Hora" value="13:00"> 13:00<br>
+					<input type="radio" name="Hora" value="13:30"> 13:30<br>
+					<input type="radio" name="Hora" value="14:00"> 14:00<br>
+					<input type="radio" name="Hora" value="14:00"> 14:30<br>
+				</form>
+		</fieldset>
+		<fieldset>	
+			<p class="textoNosotros">
+					<legend>Favor ingrese sus datos de contacto:</legend><br>
+				<form name="form">
+					<p class="textoNosotros">
+					Nombre de Contacto:<br>
+					<input type="text" id="nombre" name="nombre" value="" size="30" maxlength="30" required><br>
+					Teléfono:<br>
+					<input type="tel" id="telefono" name="fono" value="" maxlength="9" required=""><br>
+					Correo Electrónico:<br>
+					<input type="email" id="correo" name="correo" value="" required><br><br>
+					<input type="button" onclick="guardar()" value="Hacer Reserva">
+				</form>
+		</fieldset>
+		</center>
+	</div>
+</body>
+</html>
