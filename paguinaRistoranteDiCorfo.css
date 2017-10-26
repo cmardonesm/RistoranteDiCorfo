@@ -276,6 +276,13 @@ background: url('imagenes/restaurant_wallpapers.jpg');
       font-family: 'Tangerine', cursive;
       letter-spacing: 5px;
 }
+.estilotexto{
+      font-size: 20px;
+      text-align:center;
+      color: #ffffff;
+      font-family: 'Tangerine', cursive;
+      letter-spacing: 5px;
+}
 /************************************************
 *************LOGIN******************************
 ************************************************/

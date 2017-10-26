@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+		<link href="https://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet">
 		<link rel="stylesheet" href="paguinaRistoranteDiCorfo.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,23 +14,19 @@
 					alert("seleccione una mesa");
 					return false;
 				}
-
 				var idMesa = $(".collapse.in").get(0).id; //obtiene el id del html para la mesa seleccionada
-				
 
 				if (arregloPlatos[idMesa] == undefined) { //si no se ha inicializado objeto para la llave, crear lista vacia
 					arregloPlatos[idMesa] = [];
 				}
 				arregloPlatos[idMesa].push(comida); //se agrega a la lista un elemento a traves del push
 				console.log("Se agrego un "+comida+" a la mesa de id "+idMesa);
-				console.log(arregloPlatos); //imprime arreglo asociativo <key,list>
-
+				console.log(arregloPlatos); //imprime arreglo asociativo <key,list>	
 				console.log("imprimiendo elementos de la lista de id "+idMesa);
 				var listaDeLaMesa = arregloPlatos[idMesa]; //acceso a la lista, con el id.
 				for (var i=0; i < listaDeLaMesa.length; i++) {
 					console.log("elemento#"+(i+1)+":"+listaDeLaMesa[i]);
 				}
-
 				return false;
 			}
 		</script>
@@ -59,43 +55,33 @@
 					  <div id="home" class="tab-pane fade active in">
 					       <table>
 									<tr class="">
-									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Pasta Bolognesa');"></td>
-									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Arroz Chaufan');"></td> 
-									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Magdalena');"></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Burrata');"></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Mix de bruchettas');"></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Capacho di salmone');"></td>
 									</tr>
 									<tr class="">
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Zuppa Toscana');"></td>
 									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-									</tr>
-									 <tr class="" >
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-									</tr>
-									 <tr class="" >
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Zuppa di Mare');"></td>
 									</tr>
 							</table>
 					  </div>
 					  <div id="menu1" class="tab-pane fade">
 					  		 <table>
 									<tr class="">
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Fazzoleti del Pescatore');"></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Panssoti della compagna');"></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Ravioli del paese');"></td>
 									</tr>
 									<tr class="">
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Meluzza Mediovalle');"></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Lazagne');"></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Totelloni');"></td>
 									</tr>
 									 <tr class="" >
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Fettuccine');"></td>
 									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Gnocchi di patate');"></td>
 									</tr>
 							</table>
 					  </div>
@@ -124,13 +110,13 @@
 	</div>
 
   	<div class="col-md-5">
-			  <h2>Accordion Example</h2>
-			  <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+			  <h2 class="subtituloPortada">Comandas por Mesa</h2>
+			  <p class="estilotexto"><strong>Note:</strong> The <strong>data-parent</strong> Para modificar una comanda habra la mesa correspondientes y seleccione lo que desee agregar.</p>
 			  <div class="panel-group" id="accordion">
 				    <div class="panel panel-default">
 					      <div class="panel-heading">
 					        <h4 class="panel-title">
-					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Mesa 1</a>
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Comanda Mesa 1</a>
 					        </h4>
 					      </div>
 					      <div id="collapse1" class="panel-collapse collapse in">
@@ -146,10 +132,20 @@
 				    <div class="panel panel-default">
 					      <div class="panel-heading">
 					        <h4 class="panel-title">
-					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Comanda Mesa 2</a>
 					        </h4>
 					      </div>
 					      <div id="collapse2" class="panel-collapse collapse">
+						        <div class="panel-body">Lorem .</div>
+					      </div>
+				    </div>
+				    <div class="panel panel-default">
+					      <div class="panel-heading">
+					        <h4 class="panel-title">
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Comanda mesa 3</a>
+					        </h4>
+					  	  </div>
+					      <div id="collapse3" class="panel-collapse collapse">
 						        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 						        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 						        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
@@ -158,7 +154,55 @@
 				    <div class="panel panel-default">
 					      <div class="panel-heading">
 					        <h4 class="panel-title">
-					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Comanda mesa 4</a>
+					        </h4>
+					  	  </div>
+					      <div id="collapse3" class="panel-collapse collapse">
+						        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+					      </div>
+				    </div>
+				    <div class="panel panel-default">
+					      <div class="panel-heading">
+					        <h4 class="panel-title">
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Comanda mesa 5</a>
+					        </h4>
+					  	  </div>
+					      <div id="collapse3" class="panel-collapse collapse">
+						        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+					      </div>
+				    </div>
+				    <div class="panel panel-default">
+					      <div class="panel-heading">
+					        <h4 class="panel-title">
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Comanda mesa 6</a>
+					        </h4>
+					  	  </div>
+					      <div id="collapse3" class="panel-collapse collapse">
+						        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+					      </div>
+				    </div>
+				    <div class="panel panel-default">
+					      <div class="panel-heading">
+					        <h4 class="panel-title">
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Comanda mesa 7</a>
+					        </h4>
+					  	  </div>
+					      <div id="collapse3" class="panel-collapse collapse">
+						        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+					      </div>
+				    </div>
+				    <div class="panel panel-default">
+					      <div class="panel-heading">
+					        <h4 class="panel-title">
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Comanda mesa 8</a>
 					        </h4>
 					  	  </div>
 					      <div id="collapse3" class="panel-collapse collapse">
