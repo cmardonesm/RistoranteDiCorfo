@@ -2,20 +2,40 @@
 <html>
 <head>
 
-<link rel="stylesheet" href="paguinaRistoranteDiCorfo.css">
-<link rel="stylesheet" href="paguinaRistoranteDiCorfo.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-<script type="text/javascript">
-	
-		
-	</script>
+		<link rel="stylesheet" href="paguinaRistoranteDiCorfo.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			var arregloPlatos={}; //Arreglo asociativo, pares <key,objeto>
 
+			function agregarPlato(comida){
+				if ($(".collapse.in").get(0) ==undefined){
+					alert("seleccione una mesa");
+					return false;
+				}
+
+				var idMesa = $(".collapse.in").get(0).id; //obtiene el id del html para la mesa seleccionada
+				
+
+				if (arregloPlatos[idMesa] == undefined) { //si no se ha inicializado objeto para la llave, crear lista vacia
+					arregloPlatos[idMesa] = [];
+				}
+				arregloPlatos[idMesa].push(comida); //se agrega a la lista un elemento a traves del push
+				console.log("Se agrego un "+comida+" a la mesa de id "+idMesa);
+				console.log(arregloPlatos); //imprime arreglo asociativo <key,list>
+
+				console.log("imprimiendo elementos de la lista de id "+idMesa);
+				var listaDeLaMesa = arregloPlatos[idMesa]; //acceso a la lista, con el id.
+				for (var i=0; i < listaDeLaMesa.length; i++) {
+					console.log("elemento#"+(i+1)+":"+listaDeLaMesa[i]);
+				}
+
+				return false;
+			}
+		</script>
 </head>
 <body class="fondoPizza">
-
 <nav align="right" >
 		<a class="botonesSecundarios" href="index.html">HOME</a>
 		<a class="botonesSecundarios" href="carta.html">CARTA</a>
@@ -24,79 +44,133 @@
 		<a class="botonesSecundarios" href="login.html">LOGIN</a>
 </nav>
 	<form class="contenedor" class="fixed" action="" method="post" onsubmit="">
-			<br>
-			
-<div class="fixed2">		
-	<div class="container" >
-		  <ul class="nav nav-tabs">
-		    <li class="active""><a data-toggle="tab" href="#home">Entradas</a></li>
-		    <li class=""><a data-toggle="tab" href="#menu1">Fondos</a></li>
-		    <li class=""><a data-toggle="tab" href="#menu2">Postres</a></li>
-		  </ul>
 
-		  <div  id="home" class="tab-pane fade">
-		       <table>
-						<tr class="">
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-						<tr class="">
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-						 <tr class="" >
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-				</table>
-		  </div>
-		  <div id="menu1" class="tab-pane fade">
-		  		 <table>
-						<tr class="">
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-						<tr class="">
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-						 <tr class="" >
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-				</table>
-		  </div>
-		  <div id="menu2" class="tab-pane fade">
-		  		<table>
-						<tr class="">
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-						<tr class="">
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-						 <tr class="" >
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
-						    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
-						</tr>
-				</table>  
-		  </div>
-	  </div>
+<div class="container">
+  <div class="row">
+  		<div class="col-md-7">
+			<div class="fixed2">		
+				<div class="container" >
+					  <ul class="nav nav-tabs" align="left">
+					    <li class="active""><a data-toggle="tab" href="#home">Entradas</a></li>
+					    <li class=""><a data-toggle="tab" href="#menu1">Fondos</a></li>
+					    <li class=""><a data-toggle="tab" href="#menu2">Postres</a></li>
+					  </ul>
+
+					  <div id="home" class="tab-pane fade active in">
+					       <table>
+									<tr class="">
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Pasta Bolognesa');"></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Arroz Chaufan');"></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick="return agregarPlato('Magdalena');"></td>
+									</tr>
+									<tr class="">
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+									 <tr class="" >
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+									 <tr class="" >
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+							</table>
+					  </div>
+					  <div id="menu1" class="tab-pane fade">
+					  		 <table>
+									<tr class="">
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+									<tr class="">
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+									 <tr class="" >
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+							</table>
+					  </div>
+					  <div id="menu2" class="tab-pane fade">
+					  		<table>
+									<tr class="">
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+									<tr class="">
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+									 <tr class="" >
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td> 
+									    <td><input class="botonesGrandes " value="    " type="button" onclick=""></td>
+									</tr>
+							</table>  
+					  </div>
+				  </div>
+			</div>
+		</form>
+	</div>
+
+  	<div class="col-md-5">
+			  <h2>Accordion Example</h2>
+			  <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+			  <div class="panel-group" id="accordion">
+				    <div class="panel panel-default">
+					      <div class="panel-heading">
+					        <h4 class="panel-title">
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Mesa 1</a>
+					        </h4>
+					      </div>
+					      <div id="collapse1" class="panel-collapse collapse in">
+					        <div class="panel-body">
+					        	<ol>
+					        		<li>bebiidas</li>
+					        		<li>Pastas</li>
+					        		<li>Pizza</li>
+					        	</ol>
+					        </div>
+					      </div>
+				    </div>
+				    <div class="panel panel-default">
+					      <div class="panel-heading">
+					        <h4 class="panel-title">
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+					        </h4>
+					      </div>
+					      <div id="collapse2" class="panel-collapse collapse">
+						        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+					      </div>
+				    </div>
+				    <div class="panel panel-default">
+					      <div class="panel-heading">
+					        <h4 class="panel-title">
+					          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+					        </h4>
+					  	  </div>
+					      <div id="collapse3" class="panel-collapse collapse">
+						        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+					      </div>
+				    </div>
+			  </div> 
+		</div>
+	</div>
 </div>
-			
-</form>
-
-
 	
 </body>	
 </html>
