@@ -44,7 +44,7 @@ var opc,mainCont,quitarCont,cantQuitar,modCant,elim,i,j;
   mainCont = 4;
   
   function Consultar(){
-    var html = "<table border='1|1'><tr><td>ID</td><td>Nombre</td><td>Cantidad</td><td>Unidad</td><td>Tipo</td></tr>";
+    var html = "<table  class='transboxTablas' border='1|1'><tr><td>ID</td><td>Nombre</td><td>Cantidad</td><td>Unidad</td><td>Tipo</td></tr>";
       for (var i = 0; i < mainCont; i++) {
           html+="<tr>";
           html+="<td>"+(i+1)+"</td>";
@@ -142,7 +142,7 @@ var opc,mainCont,quitarCont,cantQuitar,modCant,elim,i,j;
   
 </script>
 </head>
-<body>
+<body onload="Consultar()">
 
 <nav  class="navbar-container fondoPizza" align="right" >
 	<a class="botonesSecundarios" href="index.html">HOME</a>
@@ -152,20 +152,20 @@ var opc,mainCont,quitarCont,cantQuitar,modCant,elim,i,j;
 	<a class="botonesSecundarios" href="login.html">LOGIN</a>
 </nav>
 
-<div class="container">
+<div class="container" >
   <h2>Control de Stock</h2>
   <p>En esta sección podrá controlar en linea lo niveles de estock disponibles, podrá ingresar existencias y rebajarlas</p><br>
   <ul class="nav nav-tabs">
-    <li class="active "><a data-toggle="tab" href="#home">Sotck disponible</a></li>
+    <li class="active" onload="Consultar()"><a data-toggle="tab" href="#home">Sotck disponible</a></li>
     <li class=""><a data-toggle="tab" href="#menu1">Ingresar existencias</a></li>
     <li class=""><a data-toggle="tab" href="#menu2">Rebajar stock</a></li>
     <li class=""><a data-toggle="tab" href="#menu3">Alertas Stock Critico</a></li>
   </ul>
 
-  <div id="home" class="tab-pane fade">
-       <p>CONSULTAR STOCK</p>
-        <button onclick="Consultar()">Consultar</button>
-      <p id="box"></p>
+  <div  id="home" class="tab-pane fade">
+        <p>CONSULTAR STOCK</p>
+          <button onload="Consultar">Consultar</button>
+        <p id="box"></p>
   </div>
   
     <div id="menu1" class="tab-pane fade">
@@ -224,9 +224,6 @@ var opc,mainCont,quitarCont,cantQuitar,modCant,elim,i,j;
     </div>
   </div>
 </div>
-
 </div>
-	
-	
 </body>	
 </html>
