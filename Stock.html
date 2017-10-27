@@ -1,5 +1,13 @@
 <!Doctype html>
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="paguinaRistoranteDiCorfo.css">
+  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 	var opc,mainCont,quitarCont,cantQuitar,modCant,elim,i,j;
 	var insumos = new Array(100);
@@ -12,7 +20,7 @@
 	insumos[0][0] = 'Harina';
 	cantidad[0] = 10;
 	insumos[0][1] = 'kg';
-	insumos[0][2] = 'Abarrote';
+	insumos[0][2] = 'Abarrotes';
 	
 	insumos[1][0] = 'Lomo Vetado';
 	cantidad[1] = 20;
@@ -32,7 +40,7 @@
 	mainCont = 4;
 	
 	function Consultar(){
-		var html = "<table border='1|1'><tr><td>ID</td><td>Nombre</td><td>Cantidad</td><td>Unidad</td><td>Tipo</td></tr>";
+		var html = "<table border='1|1'><tr><td>ID</td><td>Nombre</td><td>Cantidad</td><td>Unidad</td><td>Tipo</td><td>Eliminar</td><td>Agregar</td><td>Rebajar</td><td>Modificar</td></tr>";
 	    for (var i = 0; i < mainCont; i++) {
 	        html+="<tr>";
 	        html+="<td>"+(i+1)+"</td>";
@@ -40,6 +48,10 @@
 	        html+="<td>"+cantidad[i]+"</td>";
 	        html+="<td>"+insumos[i][1]+"</td>";
 	        html+="<td>"+insumos[i][2]+"</td>";
+	        html+="<td><button type='radio' onclick='EliminarB("+i+")'></button>";
+	        html+="<td><button onclick='AgregarB("+i+")'></button>";
+	        html+="<td><button onclick='RebajarB("+i+")'></button>";
+			html+="<td><button onclick='ModificarB("+i+")'></button>";
 
 	        html+="</tr>";
 
@@ -56,103 +68,222 @@
 		insumos[mainCont][2] = [document.form.tipo.value];
 		mainCont++;
 		Consultar();
+		document.getElementById("myCheck0").click();
 	}	
 	
-	function Rebajar(){
+	// function Rebajar(){
 		
-		var desc = parseInt(document.getElementById("desc").value);
+	// 	var desc = parseInt(document.getElementById("desc").value);
 		
-		if(isNaN(document.getElementById("desc").value)){
-			alert("Valor debe ser un numero");
-			return false;
+	// 	if(isNaN(document.getElementById("desc").value)){
+	// 		alert("Valor debe ser un numero");
+	// 		return false;
+	// 		}
+		
+	// 	if(desc > mainCont){
+	// 		alert("Valor Incorrecto");
+	// 		return false;
+	// 		}
+	// 	else{
+	// 		desc=desc-1;
+	// 		var quitar = prompt("Ingrese Cantida a rebajar");
+	// 		cantidad[desc] = cantidad[desc]-quitar;
+	// 		Consultar();
+	// 	}		
+	// }	
+
+	function RebajarB(x){
+		
+		var desc = parseInt(x);
+
+			var quitar = parseInt(prompt("Ingrese Cantida a rebajar"));
+			if(quitar>(cantidad[desc])){
+				alert("Valor debe ser menor o igual al valor actual");
+				return false;
 			}
-		
-		if(desc > mainCont){
-			alert("Valor Incorrecto");
-			return false;
+			else{
+				cantidad[desc] = cantidad[desc]-quitar;
+				Consultar();
 			}
-		else{
-			desc=desc-1;
-			var quitar = prompt("Ingrese Cantida a rebajar");
-			cantidad[desc] = cantidad[desc]-quitar;
+	}	
+
+	function AgregarB(x){
+		
+		var add = parseInt(x);
+
+			var agregar = parseInt(prompt("Ingrese Cantida a agregar"));
+			var num = parseInt(cantidad[add]);
+			cantidad[add] = (num+agregar);
 			Consultar();
-		}		
 	}	
 	
 	function Modificar(){
+		var mod = parseInt(document.getElementById("ID").value);
+		mod = mod-1;
+		insumos[mod][0] = [document.form2.nombre.value];
+		cantidad[mod] = [document.form2.cantidad.value];
+		insumos[mod][1] = [document.form2.unidad.value];
+		insumos[mod][2] = [document.form2.tipo.value];
+		Consultar();
+		document.getElementById("myCheck0").click();
+	}
 	
+	function ModificarB(x){
+
+		document.getElementById("myCheck1").click();
+		var mod = x;
+		
+		document.form2.ID.value = (mod+1);
+		document.form2.nombre.value = insumos[mod][0];
+		document.form2.cantidad.value = cantidad[mod];
+		document.form2.unidad.value = insumos[mod][1];
+		document.form2.tipo.value = insumos[mod][2];
+		
+		insumos[mod][0] = [document.form2.nombre.value];
+		cantidad[mod] = [document.form2.cantidad.value];
+		insumos[mod][1] = [document.form2.unidad.value];
+		insumos[mod][2] = [document.form2.tipo.value];
+		Consultar();
 	}
 
-	function Eliminar(){
+	// function Eliminar(){
 		
-		var del = parseInt(document.getElementById("del").value);
+	// 	var del = parseInt(document.getElementById("del").value);
 		
-		if(isNaN(document.getElementById("del").value)){
-			alert("Valor debe ser un numero");
-			return false;
-			}
+	// 	if(isNaN(document.getElementById("del").value)){
+	// 		alert("Valor debe ser un numero");
+	// 		return false;
+	// 		}
 		
-		if(del >= mainCont){
-			if(del==mainCont){
-				mainCont=mainCont-1;
-				Consultar();
-				}
-			else{
-				alert("Valor Incorrecto");
-				return false;
-				}
+	// 	if(del >= mainCont){
+	// 		if(del==mainCont){
+	// 			mainCont=mainCont-1;
+	// 			Consultar();
+	// 			}
+	// 		else{
+	// 			alert("Valor Incorrecto");
+	// 			return false;
+	// 			}
+	// 	}
+	// 	else{
+	// 		del = (del-1);
+	// 		for(i = del; i < (mainCont-1); i++){
+	// 			insumos[i][0] = insumos[i+1][0];
+	// 			insumos[i][1] = insumos[i+1][1];
+	// 			insumos[i][2] = insumos[i+1][2];
+	// 			cantidad[i] = cantidad[i+1];
+	// 		}
+	// 		mainCont=mainCont-1;
+	// 		Consultar();
+	// 		}
+	// }
+
+	 function EliminarB(x){
+		
+		var del = x;
+		
+		for(i = del; i < (mainCont-1); i++){
+			insumos[i][0] = insumos[i+1][0];
+			insumos[i][1] = insumos[i+1][1];
+			insumos[i][2] = insumos[i+1][2];
+			cantidad[i] = cantidad[i+1];
 		}
-		else{
-			del = (del-1);
-			for(i = del; i < (mainCont-1); i++){
-				insumos[i][0] = insumos[i+1][0];
-				insumos[i][1] = insumos[i+1][1];
-				insumos[i][2] = insumos[i+1][2];
-				cantidad[i] = cantidad[i+1];
-			}
-			mainCont=mainCont-1;
-			Consultar();
-			}
-	}	
+		mainCont=mainCont-1;
+		Consultar();
+	}		
 	
 </script>
-<style>
+</head>
 
-</style>
+<body onload="Consultar()">
 
-<body>
+<nav  class="navbar-container fondoPizza" align="right" >
+	<a class="botonesSecundarios" href="index.html">HOME</a>
+	<a class="botonesSecundarios" href="carta.html">CARTA</a>
+	<a class="botonesSecundarios" href="reserva.html">RESERVA</a>
+	<a class="botonesSecundarios" href="nosotros.html">NOSOTROS</a>
+	<a class="botonesSecundarios" href="login.html">LOGIN</a>
+</nav>
 
-<h1>MENU</h1>
-<div>
-	<p>CONSULTAR STOCK</p>
-	<button onclick="Consultar()">Consultar</button>
-	<p id="box"></p>
+<h1 align="center">STOCK DE PRODUCTOS</h1>
+
+<!-- <div> -->
+	<!-- <p>CONSULTAR STOCK</p> -->
+	<!-- <p id="box"></p> -->
+	<!-- <button onclick='Consultar()'>Consultar</button> -->
+<!-- </div> -->
+<!-- <div> -->
+	<!-- <p>AGREGAR PRODUCTO</p> -->
+	<!-- <form name="form"> -->
+		<!-- <p>Nombre: <input type="text" id="nombre" value="Pollo" onclick = "if(this.value=='Pollo') this.value=''"/><br /></p> -->
+		<!-- <p>Unidad: <input type="text" id="unidad" value="Kg" onclick = "if(this.value=='Kg') this.value=''"/><br /></p> -->
+		<!-- <p>Cantidad: <input type="text" id="cantidad" value="20" onclick = "if(this.value=='20') this.value=''"/><br /></p> -->
+		<!-- <p>Tipo: <input type="text" id="tipo" value="Abarrotes" onclick = "if(this.value=='Abarrotes') this.value=''"/><br /></p> -->
+		<!-- <td><input type="button" onclick="Agregar();" value="guardar"></td> -->
+	<!-- </form> -->
+<!-- </div> -->
+
+<!-- <div> -->
+	<!-- <p>MODIFICAR PRODUCTO</p> -->
+	<!-- <form name="form2"> -->
+		<!-- <p>ID: <input type="text" id="ID" value="1" onclick = "if(this.value=='1') this.value=''"/><br /></p> -->
+		<!-- <p>Nombre: <input type="text" id="nombre" value="Pollo" onclick = "if(this.value=='Pollo') this.value=''"/><br /></p> -->
+		<!-- <p>Unidad: <input type="text" id="unidad" value="Kg" onclick = "if(this.value=='Kg') this.value=''"/><br /></p> -->
+		<!-- <p>Cantidad: <input type="text" id="cantidad" value="20" onclick = "if(this.value=='20') this.value=''"/><br /></p> -->
+		<!-- <p>Tipo: <input type="text" id="tipo" value="Abarrotes" onclick = "if(this.value=='Abarrotes') this.value=''"/><br /></p> -->
+		<!-- <td><input type="button" onclick="Modificar();" value="guardar"></td> -->
+	<!-- </form> -->
+<!-- </div> -->
+
+<div class="container">
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a id="myCheck0" data-toggle="tab" href="#home">HOME</a></li>
+    <li><a data-toggle="tab" href="#menu1">Agregar Producto</a></li>
+    <li><a id="myCheck1" data-toggle="tab" href="#menu2">Modificar Producto</a></li>
+    <!-- <li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active"></br>
+      <p id="box"></p>
+    </div>
+	
+    <div id="menu1" class="tab-pane fade"></br>
+      	<form name="form">
+      		<label for="nombre">Nombre Producto</label>
+			<p><input type="text" id="nombre" value="Pollo" onclick = "if(this.value=='Pollo') this.value=''"/><br /></p>
+			<label for="unidad">Unidad de Medida</label>
+			<p><input type="text" id="unidad" value="Kg" onclick = "if(this.value=='Kg') this.value=''"/><br /></p>
+			<label for="cantidad">Cantidad</label>
+			<p><input type="text" id="cantidad" value="20" onclick = "if(this.value=='20') this.value=''"/><br /></p>
+			<label for="tipo">Tipo de Producto</label>
+			<p><input type="text" id="tipo" value="Abarrotes" onclick = "if(this.value=='Abarrotes') this.value=''"/><br /></p>
+			<td><input type="button" onclick="Agregar();" value="guardar"></td>
+		</form>
+    </div>
+    <div id="menu2"  class="tab-pane fade"></br>
+		 <form name="form2">
+		 	<label for="ID">ID del Producto</label>
+			<p><input type="text" id="ID" value="1" onclick = "if(this.value=='1') this.value=''"/><br /></p>
+			<label for="nombre">Nombre Producto</label>
+			<p><input type="text" id="nombre" value="Pollo" onclick = "if(this.value=='Pollo') this.value=''"/><br /></p>
+			<label for="unidad">Unidad de Medida</label>
+			<p><input type="text" id="unidad" value="Kg" onclick = "if(this.value=='Kg') this.value=''"/><br /></p>
+			<label for="cantidad">Cantidad</label>
+			<p><input type="text" id="cantidad" value="20" onclick = "if(this.value=='20') this.value=''"/><br /></p>
+			<label for="tipo">Tipo de Producto</label>
+			<p><input type="text" id="tipo" value="Abarrotes" onclick = "if(this.value=='Abarrotes') this.value=''"/><br /></p>
+			<td><input type="button" onclick="Modificar();" value="guardar"></td>
+		</form>
+	  
+    </div>
+<!--     <div id="menu3" class="tab-pane fade">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div> -->
+  </div>
 </div>
 
-
-<div>
-	<p>AGREGAR STOCK</p>
-	<form name="form">
-		<p>Nombre: <input type="text" id="nombre" value="Pollo" onclick = "if(this.value=='Pollo') this.value=''"/><br /></p>
-		<p>Unidad: <input type="text" id="unidad" value="Kg" onclick = "if(this.value=='Kg') this.value=''"/><br /></p>
-		<p>Cantidad: <input type="text" id="cantidad" value="20" onclick = "if(this.value=='20') this.value=''"/><br /></p>
-		<p>Tipo: <input type="text" id="tipo" value="Abarrotes" onclick = "if(this.value=='Abarrotes') this.value=''"/><br /></p>
-		<td><input type="button" onclick="Agregar();" value="guardar"></td>
-	</form>
-</div>
-<div>
-	<p>REBAJAR STOCK</p>
-	    <div>
-        <label for="desc">Indique ID que Desea Rebajar:</label><br/>
-        <input type="text" id="desc" name="desc" value="Valor ID, pe. 2" onclick = "if(this.value=='Valor ID, pe. 2') this.value=''"/>
-        <button onclick="Rebajar()">Rebajar</button>
-</div>
-<div>
-	<p>ELIMINAR STOCK</p>
-	    <div>
-        <label for="del">Indique ID que Desea Eliminar:</label><br/>
-        <input type="text" id="del" name="del" value="Valor ID, pe. 2" onclick = "if(this.value=='Valor ID, pe. 2') this.value=''"/>
-        <button onclick="Eliminar()">Eliminar</button>
-</div>
 </body>
 </html>

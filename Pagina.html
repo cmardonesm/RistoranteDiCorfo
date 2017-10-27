@@ -8,6 +8,14 @@
 <body>
 
 			<script type="text/javascript">	
+			function FuncionManager(){
+			window.location.href = "stock.html";
+			return false;
+			}
+			function FuncionMesero(){
+			window.location.href = "mesero.html";
+			return false;
+			}
 			</script>
 <nav  class="navbar-container fondoPizza" align="right" >
 				<a class="botonesSecundarios" href="index.html">HOME</a>
@@ -27,10 +35,10 @@
 			<h1 class="" >Bienvenido seleccione perfil de usuario </h1>
 		<table >
 			<tr class="fixed4">
-			    <td><input class="botonesFondoImagenChef " value="    " type="button" onclick="crearTablaDatos()"></td>
-			    <td><input class="botonesFondoImagenMesero " value="    " type="button" onclick="crearTablaDatos()"></td> 
-			    <td><input class="botonesFondoImagenManager " value="    " type="button" onclick="crearTablaDatos()"></td>
-			    <td><input class="botonesFondoImagenCajero " value="    " type="button" onclick="crearTablaDatos()"></td>
+			    <td><input class="botonesFondoImagenChef " value="    " type="button" onclick="FuncionManager()""></td>
+			    <td><input class="botonesFondoImagenMesero " value="    " type="button" onclick="FuncionMesero()"></td> 
+			    <td><input class="botonesFondoImagenManager " value="    " type="button" onclick="FuncionManager()"></td>
+			    <td><input class="botonesFondoImagenCajero " value="    " type="button" onclick="FuncionManager()"></td>
 			</tr>
 		</table>
 	</form>
